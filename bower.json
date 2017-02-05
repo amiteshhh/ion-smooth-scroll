@@ -1,0 +1,24 @@
+{
+  "name": "ion-smooth-scroll",
+  "homepage": "https://github.com/amiteshhh/ion-smooth-scroll",
+  "authors": [
+    "Amitesh Kumar <amiteshhh",
+    "nitk@gmail.com>"
+  ],
+  "description": "An ionic plugin for smooth anchor scroll",
+  "main": "",
+  "keywords": [
+    "ionic",
+    "angular",
+    "anchorScroll",
+    "smoothScroll"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
