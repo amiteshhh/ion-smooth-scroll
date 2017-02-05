@@ -31,7 +31,7 @@ module.exports = function (grunt) {
             }
         }, uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + ' by <%= pkg.author %> -' +
+                banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + ' by <%= pkg.author.name %> - ' +
                 '<%= grunt.template.today("yyyy-mm-dd") %>. Visit  <%= pkg.repository.url %> */',
                 mangle: true
             },

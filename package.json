@@ -7,10 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/amiteshhh/ion-smooth-scroll.git"
+    "url": "https://github.com/amiteshhh/ion-smooth-scroll"
   },
-  "author": "Amitesh Kumar",
+  "author": {
+    "name": "Amitesh Kumar",
+    "email": "amiteshhh.nitk@gmail.com",
+    "url": "https://github.com/amiteshhh"
+  },
+  "keywords": [
+    "angularjs",
+    "ionic",
+    "anchorScroll",
+    "smooth scroll"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/amiteshhh/ion-smooth-scroll/issues"
