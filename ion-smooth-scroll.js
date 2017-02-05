@@ -13,7 +13,7 @@
         Unlike hash based anchorScroll, this directive does not pollute the Url by adding hash fragment.
       </div>
      * # Demo    
-     * {@link https://embed.plnkr.co/PT6NfRL5fEn28kUmDwra/ Plunker Demo}
+     * {@link https://embed.plnkr.co/Y71E3q/ Plunker Demo}
      * @restrict A
      * @element ANY
      * @param {string} ionSmoothScroll id of DOM element where you want to scroll to.
@@ -58,7 +58,7 @@
             } else if (scrollView.isNative) {
                 scrollViewContainer = scrollView.el;
             } else {
-                scrollViewContainer = delegateHandleRef.getScrollView().options.el;
+                scrollViewContainer = scrollView.options.el;
                 isDelegated = true;
             }
 
