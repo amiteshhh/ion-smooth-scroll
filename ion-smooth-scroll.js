@@ -7,7 +7,7 @@
      * @description
      * An alternate to {@link http://ionicframework.com/docs/api/service/$ionicScrollDelegate $ionicScrollDelegate.anchorScroll}
      * 
-     * `anchorScroll` does not work smoothly in all scenario especially in modal window where some content gets hidden on hash scroll. {@link https://github.com/driftyco/ionic/issues/508 See the Github Issue}.
+     * `anchorScroll` does not work well when ion-content has dynamic content. Part of content gets hidden on anchor scroll. {@link https://github.com/driftyco/ionic/issues/508 See the Github Issue}.
      * 
      * <div class="alert alert-info">
         Unlike hash based anchorScroll, this directive does not pollute the Url by adding hash fragment.
@@ -20,16 +20,29 @@
      * @param {string} delegateHandle value of `delegate-handle` attribute of scrollable container. Scrollable container DOM reference is calculated by matching this attribute. 
      * 
      * Therefore even if you use css based scroll, scrollable container should have this attribute.
-     * @param {number} [duration=400] Duration in millisecond. If you are not using the ionic inbuilt JS scrolling, then you may specify the animation duration.
+     * @param {number} [duration=400] Duration in millisecond. If you are not using the ionic inbuilt scrolling, then you may specify the scroll duration in ms.
      * @requires $ionicPosition
      * @requires $ionicScrollDelegate
      */
 
     angular.module('ion-smooth-scroll', [])
+        .provider('ionSmoothScroll', providerFunction)
         .directive('ionSmoothScroll', directiveDefinition);
 
-    directiveDefinition.$inject = ['$ionicPosition', '$ionicScrollDelegate'];
-    function directiveDefinition($ionicPosition, $ionicScrollDelegate) {
+    function providerFunction() {
+
+        this.setScrollDuration = function (ms) {
+            this.duration_ms = ms;
+        };
+
+        this.$get = function () {
+            return this;
+        };
+
+    }
+
+    directiveDefinition.$inject = ['$ionicPosition', '$ionicScrollDelegate', 'ionSmoothScroll'];
+    function directiveDefinition($ionicPosition, $ionicScrollDelegate, ionSmoothScroll) {
         return {
             restrict: "A",
             link: linkFunction
@@ -42,7 +55,7 @@
             });
         }
 
-        function scrollTo(id, delegateHandle, duration) {
+        function scrollTo(id, delegateHandle, duration_ms) {
             var scrollView, scrollViewContainer, top, OffsetAdjust, delegateHandleRef, isDelegated, targetElement = document.getElementById(id);
             if (!targetElement) {
                 return;
@@ -68,28 +81,28 @@
             if (isDelegated) {
                 delegateHandleRef.scrollTo(0, top, true);
             } else {
-                _nativeScroll(scrollViewContainer, top, duration);
+                _nativeScroll(scrollViewContainer, top, duration_ms);
             }
         }
         /** copied from http://jsfiddle.net/0uwg96sh/
          * 
          */
-        function _nativeScroll(scrollViewContainer, top, duration) {
-            duration = Math.round(duration) || 400;
-            if (duration < 0) {
+        function _nativeScroll(scrollViewContainer, top, duration_ms) {
+            duration_ms = Math.round(duration_ms) || ionSmoothScroll.duration_ms;
+            if (duration_ms < 0) {
                 return;
             }
-            if (duration === 0) {
+            if (duration_ms === 0) {
                 scrollViewContainer.scrollTop = top;
                 return;
             }
 
             if (Math.abs(scrollViewContainer.scrollTop - top) < 200) {
-                duration = 200;
+                duration_ms = 200;
             }
 
             var startTime = Date.now();
-            var endTime = startTime + duration;
+            var endTime = startTime + duration_ms;
 
             var startTop = scrollViewContainer.scrollTop;
             var distance = top - startTop;

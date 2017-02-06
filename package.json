@@ -2,7 +2,7 @@
   "name": "ion-smooth-scroll",
   "version": "1.0.0",
   "description": "An alternate to $ionicScrollDelegate.anchorScroll with smooth scrolling without polluting hash Url",
-  "main": "ion-smooth-scroll.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
