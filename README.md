@@ -51,90 +51,13 @@ Directive is used as an attribute. When clicked it will scroll to the target.
 ```
 
 #### Parameters
+| Param        | Type           | Details  |
+| ------------- |:-------------| -----|
+| ionSmoothScroll | <a href="" class="label type-hint type-hint-string">string</a> | id of DOM element where you want to scroll to.|
+| delegateHandle | <a href="">string</a> | Value of `delegate-handle` attribute. Both scrollView container and element with ion-smooth-scroll must have this attribute.<br>Therefore even if you use css scrollView, scrollable container should have this attribute.| 
+| duration | <a href="" class="label type-hint type-hint-number">number</a> | Scroll transistion duration in millisecond. Applicable only If you are not using the ionic inbuilt JS scrolling. Most of the time you will not pass this parameter :) <br>You can also configure it at app level in the config Phase [Explained Later](#config).<br> _(default: 400)_ | 
 
-<table class="variables-matrix table table-bordered table-striped">
 
-<thead>
-
-<tr>
-
-<th>Param</th>
-
-<th>Type</th>
-
-<th>Details</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td>ionSmoothScroll</td>
-
-<td><a href="" class="label type-hint type-hint-string">string</a></td>
-
-<td>
-
-<div class="ionsmoothscroll-directive-page ionsmoothscroll-directive-ionsmoothscroll-page">
-
-id of DOM element where you want to scroll to.
-
-</div>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>delegateHandle</td>
-
-<td><a href="" class="label type-hint type-hint-string">string</a></td>
-
-<td>
-
-<div class="ionsmoothscroll-directive-page ionsmoothscroll-directive-ionsmoothscroll-page">
-
-Value of `delegate-handle` attribute. Both scrollView container and element with ion-smooth-scroll must have this attribute.
-
-Therefore even if you use css scrollView, scrollable container should have this attribute.
-
-</div>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>duration</td>
-
-<td><a href="" class="label type-hint type-hint-number">number</a></td>
-
-<td>
-
-<div class="ionsmoothscroll-directive-page ionsmoothscroll-directive-ionsmoothscroll-page">
-
-Scroll transistion duration in millisecond. Applicable only If you are not using the ionic inbuilt JS scrolling. Its rare to use this parameter :)
-
-You can also configure it at app level in the config Phase [Explained Later](#config).
-
-</div>
-
-_(default: 400)_
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
 
 ### Examples
 
@@ -156,6 +79,7 @@ _(default: 400)_
 
 2. Using `ion-smooth-scroll` inside css scrollView
 
+The only difference is you can optionally pass additional parameter, **duration** to specify _scroll transition duration_
 
 ```html
 
