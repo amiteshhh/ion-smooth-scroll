@@ -3,7 +3,7 @@
 
 An alternate to [$ionicScrollDelegate.anchorScroll](http://ionicframework.com/docs/api/service/$ionicScrollDelegate) for  smooth scrolling to given `id` without changing the [hash](https://en.wikipedia.org/wiki/Fragment_identifier) of url.
 
-Ionic component `anchorScroll` works unreliably. Here are few limitations.
+Ionic component `anchorScroll` works unreliably. Below are few issues/limitations with it:
 
 1. **Content goes out of view** : Sometimes Ionic `anchorScroll` scrolls beyond the target element and therefore part of content area goes out of view and doesn't become visible even when user tries to scroll. 
 [See this Github Issue](https://github.com/driftyco/ionic/issues/508) or [this issue](https://github.com/driftyco/ionic/issues/618). 
@@ -18,9 +18,9 @@ scrollViews created by ionContent and ionScroll directives.
 
 Script file is available from a variety of sources. Choose the one that fits you.
 
-- Direct download (https://raw.githubusercontent.com/amiteshhh/ion-smooth-scroll/master/src/ion-smooth-scroll.min.js)
-- Bower (`bower install ion-smooth-scroll --save`)
-- CDN `Raw Git`  (https://rawgit.com/amiteshhh/ion-smooth-scroll/master/ion-smooth-scroll.min.js)
+- Direct download https://raw.githubusercontent.com/amiteshhh/ion-smooth-scroll/master/src/ion-smooth-scroll.min.js
+- Bower `bower install ion-smooth-scroll --save`
+- CDN `Raw Git`  https://rawgit.com/amiteshhh/ion-smooth-scroll/master/ion-smooth-scroll.min.js
 
 ## Getting started
 
@@ -36,7 +36,7 @@ Add the `ionSmoothScroll` as a dependency in your angular module
 angular.module('myApp', ['ionSmoothScroll']);
 ```
 
-## Usage
+### Usage
 
 Directive is used as an attribute. When clicked it will scroll to the target.
 
@@ -50,18 +50,19 @@ Directive is used as an attribute. When clicked it will scroll to the target.
 </ANY>
 ```
 
-#### Parameters
+### Parameters
 | Param        | Type           | Details  |
 | ------------- |:-------------| -----|
 | ionSmoothScroll | <a href="" class="label type-hint type-hint-string">string</a> | id of DOM element where you want to scroll to.|
-| delegateHandle | <a href="">string</a> | Value of `delegate-handle` attribute. Both scrollView container and element with ion-smooth-scroll must have this attribute.<br>Therefore even if you use css scrollView, scrollable container should have this attribute.| 
-| duration | <a href="" class="label type-hint type-hint-number">number</a> | Scroll transistion duration in millisecond. Applicable only If you are not using the ionic inbuilt JS scrolling. Most of the time you will not pass this parameter :) <br>You can also configure it at app level in the config Phase [Explained Later](#config).<br> _(default: 400)_ | 
+| delegateHandle | <a href="">string</a> | Value of `delegate-handle` attribute. Both scrollView container and element with `ion-smooth-scroll` must have this attribute even if you use css scrollView. <br>This is used only for getting the DOM reference of scrollable container.| 
+| duration | <a href="" class="label type-hint type-hint-number">number</a> | Scroll transistion duration in millisecond. <br>**Applicable only If you are not using ionic inbuilt JS scrolling.** You will be rarely passing this parameter :) <br>You can also configure it at app level during _angular_ [config Phase](#config) explained later.<br> _(default: 400)_ | 
 
 
 
-### Examples
+## Examples
 
-1. Using `ion-smooth-scroll` inside ionicScrollView
+### 1. With ionic scrollView
+
 
 ```html
 <!-- Only required attributes has been shown below -->
@@ -76,10 +77,10 @@ Directive is used as an attribute. When clicked it will scroll to the target.
 </ion-content>
 ```
 
+### 2. With css scrollView
 
-2. Using `ion-smooth-scroll` inside css scrollView
 
-The only difference is you can optionally pass additional parameter, **duration** to specify _scroll transition duration_
+The only difference is you can pass additional parameter, **duration**, to specify _scroll transition duration_
 
 ```html
 
@@ -104,13 +105,12 @@ The only difference is you can optionally pass additional parameter, **duration*
 </div>
 ```
 
-Using `ion-smooth-scroll` for **ionicScrollView**
 
 ## Config
 
 > This section is applicable only for the css scrollView.
 
-You can alter the default scroll transistion duration, 400 ms, for your app during config phase.
+You can set the app level transistion duration using `ionSmoothScrollProvider.`__`setScrollDuration`__ method _(default: 400 ms)_.
 
 ```javascript
 angular.module('myApp', ['ionSmoothScroll'])
@@ -123,4 +123,4 @@ angular.module('myApp', ['ionSmoothScroll'])
 
 ## Demo
 
-[Plunker Demo](https://embed.plnkr.co/Y71E3q/ )
+[Plunker Demo](https://embed.plnkr.co/Y71E3q/)
