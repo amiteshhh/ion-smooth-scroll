@@ -18,9 +18,9 @@ scrollViews created by ionContent and ionScroll directives.
 
 Script file is available from a variety of sources. Choose the one that fits you.
 
-- Direct download https://raw.githubusercontent.com/amiteshhh/ion-smooth-scroll/master/src/ion-smooth-scroll.min.js
+- Github Source Code https://github.com/amiteshhh/ion-smooth-scroll/blob/master/src/ion-smooth-scroll.min.js
 - Bower `bower install ion-smooth-scroll --save`
-- CDN `Raw Git`  https://rawgit.com/amiteshhh/ion-smooth-scroll/master/ion-smooth-scroll.min.js
+- CDN `Raw Git`  https://cdn.rawgit.com/amiteshhh/ion-smooth-scroll/503a96cf/src/ion-smooth-scroll.min.js
 
 ## Getting started
 
@@ -55,7 +55,7 @@ Directive is used as an attribute. When clicked it will scroll to the target.
 | ------------- |:-------------| -----|
 | ionSmoothScroll | <a href="" class="label type-hint type-hint-string">string</a> | id of DOM element where you want to scroll to.|
 | delegateHandle | <a href="">string</a> | Value of `delegate-handle` attribute. Both scrollView container and element with `ion-smooth-scroll` must have this attribute even if you use css scrollView. <br>This is used only for getting the DOM reference of scrollable container.| 
-| duration | <a href="" class="label type-hint type-hint-number">number</a> | Scroll transistion duration in millisecond. <br>**Applicable only If you are not using ionic inbuilt JS scrolling.** You will be rarely passing this parameter :) <br>You can also configure it at app level during _angular_ [config Phase](#config) explained later.<br> _(default: 400)_ | 
+| duration | <a href="" class="label type-hint type-hint-number">number</a> | Scroll transistion duration in millisecond. <br>**Applicable only If you are not using ionic inbuilt JS scrolling.** It will also be ignored if new scroll position is less than _200px_ distance from current postion. You will be rarely passing this parameter :) <br>You can also configure it at app level during _angular_ [config Phase](#config) explained later.<br> _(default: 400)_ | 
 
 
 
@@ -115,9 +115,13 @@ You can set the app level transistion duration using `ionSmoothScrollProvider.`_
 ```javascript
 angular.module('myApp', ['ionSmoothScroll'])
     .config(['ionSmoothScrollProvider', function(ionSmoothScrollProvider){
-        //uncomment below line and see it in action
-        //it will not affect if the scrollable container is created by ionic (e.g ion-content or ion-scroll with no overflow-scroll="true")
-        //ionSmoothScrollProvider.setScrollDuration(6000); //ion-smooth-scroll will now scroll for 6 seconds to reach the target
+        /*uncomment below line and see it in action
+        it will not affect if the scrollable container is created by ionic 
+        (e.g ion-content or ion-scroll with no overflow-scroll="true")
+        */
+        
+        //ionSmoothScrollProvider.setScrollDuration(6000);        
+        //ion-smooth-scroll will scroll for 6 seconds to reach the target
     }]);
 ```
 

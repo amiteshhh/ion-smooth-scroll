@@ -39,7 +39,7 @@
      * @methodOf ionSmoothScroll
      * @description
      * Provider method of ionSmoothScrollProvider - Sets the default scroll transistion duration.
-     * @param {number} [duration=400] Scroll transistion duration in millisecond. <br><strong>Applicable only If you are not using ionic inbuilt JS scrolling.</strong>
+     * @param {number} [duration=400] Scroll transistion duration in millisecond. <br><strong>Applicable only If you are not using ionic inbuilt JS scrolling.</strong> It will be ignored if new scroll position is less than `200px` distance from current postion.
      * @example
      * <doc:example module="app">
      * <doc:source>
