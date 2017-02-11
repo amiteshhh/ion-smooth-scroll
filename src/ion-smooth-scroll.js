@@ -17,15 +17,48 @@
      * @restrict A
      * @element ANY
      * @param {string} ionSmoothScroll id of DOM element where you want to scroll to.
-     * @param {string} delegateHandle value of `delegate-handle` attribute of scrollable container. Scrollable container DOM reference is calculated by matching this attribute. 
+     * @param {string} delegateHandle Value of `delegate-handle` attribute. 
+     * Both scrollView container and element with `ion-smooth-scroll` must have this attribute even if you use css scrollView. 
+     * <br>This is used for getting the DOM reference of scrollable container 
      * 
-     * Therefore even if you use css based scroll, scrollable container should have this attribute.
-     * @param {number} [duration=400] Duration in millisecond. If you are not using the ionic inbuilt scrolling, then you may specify the scroll duration in ms.
+     * @param {number} [duration=400] Scroll transistion duration in millisecond. <br><strong>Applicable only If you are not using ionic inbuilt JS scrolling.</strong> You will be rarely passing this parameter :) 
      * @requires $ionicPosition
      * @requires $ionicScrollDelegate
      */
 
-    angular.module('ion-smooth-scroll', [])
+    /**
+     * @ngdoc object
+     * @name ionSmoothScroll
+     * @description
+     * ionSmoothScroll provider
+     */
+
+    /**
+     * @ngdoc function
+     * @name ionSmoothScroll#setScrollDuration
+     * @methodOf ionSmoothScroll
+     * @description
+     * Provider method of ionSmoothScrollProvider - Sets the default scroll transistion duration.
+     * @param {number} [duration=400] Scroll transistion duration in millisecond. <br><strong>Applicable only If you are not using ionic inbuilt JS scrolling.</strong>
+     * @example
+     * <doc:example module="app">
+     * <doc:source>
+     * <script>
+     * angular.module('app', ['ionSmoothScroll'])
+            .config(['ionSmoothScrollProvider', function(ionSmoothScrollProvider) {
+                //uncomment below line and see it in action
+                //it will not affect if the scrollable container is created by ionic (e.g ion-content or ion-scroll with no overflow-scroll="true")
+                //ionSmoothScrollProvider.setScrollDuration(6000); //ion-smooth-scroll will now scroll for 6 seconds to reach the target
+            }]);
+            </script>             
+                <div>
+                    <a target="_blank" href="https://embed.plnkr.co/Y71E3q/"> See Demo in Plunker </a>
+                </div>
+     * </doc:source>
+     * </doc:example>
+     */
+
+    angular.module('ionSmoothScroll', [])
         .provider('ionSmoothScroll', providerFunction)
         .directive('ionSmoothScroll', directiveDefinition);
 

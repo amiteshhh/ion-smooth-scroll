@@ -4,27 +4,14 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         ngdocs: {
-            all: ['ion-smooth-scroll.js'],
-            // options: {
-            //     dest: 'docs',
-            //     scripts: ['angular.js'],
-            //     html5Mode: false,
-            //     startPage: '/api',
-            //     title: "My Awesome Docs",
-            //     bestMatch: true,
-
-            // },
-            // api: {
-            //     src: ['ion-smooth-scroll.js'],
-            //     title: 'API Documentation'
-            // }
+            all: ['src/ion-smooth-scroll.js'],
+            options: { scripts: ['angular.js', 'src/ion-smooth-scroll.min.js'] }
         }, connect: {
             server: {
                 options: {
                     open: true,
                     keepalive: true,
                     base: 'docs',
-                    // livereload: true,
                     useAvailablePort: true,
                     hostname: '*'
                 }
@@ -33,12 +20,19 @@ module.exports = function (grunt) {
             options: {
                 banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + ' by <%= pkg.author.name %> - ' +
                 '<%= grunt.template.today("yyyy-mm-dd") %>. Visit  <%= pkg.repository.url %> */',
-                mangle: true
+                mangle: true,
+                sourceMap: true
             },
             my_target: {
                 files: {
-                    'ion-smooth-scroll.min.js': ['ion-smooth-scroll.js']
+                    'src/ion-smooth-scroll.min.js': 'src/ion-smooth-scroll.js'
                 }
+                //or use below for multiple js files
+                /*files: [{
+                    expand: true,
+                    src: ['src/ion-smooth-scroll.js', '!src/ion-smooth-scroll.min.js'],
+                    ext: '.min.js'
+                }]*/
             }
         }
     });
@@ -47,6 +41,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     // Default task(s).
-    grunt.registerTask('default', ['ngdocs', 'connect']);
+    grunt.registerTask('default', ['ngdocs', 'uglify']);
 
 };
