@@ -64,6 +64,8 @@
 
     function providerFunction() {
 
+        this.duration_ms = 400;
+
         this.setScrollDuration = function (ms) {
             this.duration_ms = ms;
         };
