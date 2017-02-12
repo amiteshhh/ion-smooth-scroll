@@ -1,64 +1,127 @@
-(function () {
+(function() {
     'use strict';
+    /**
+     * @ngdoc overview
+     * @name index
+     * @title API Reference
+     * @area api
+     * @description Welcome to `ion-smooth-scroll`!
+     */
 
     /**
-     * @ngdoc directive
-     * @name ionSmoothScroll.directive:ionSmoothScroll
+     * @ngdoc module
+     * @module ion-smooth-scroll
+     * @name ion-smooth-scroll
+     * @packageName ion-smooth-scroll
+     * @area api
      * @description
-     * An alternate to {@link http://ionicframework.com/docs/api/service/$ionicScrollDelegate $ionicScrollDelegate.anchorScroll}
+     * An alternate to [$ionicScrollDelegate.anchorScroll](http://ionicframework.com/docs/api/service/$ionicScrollDelegate) for  smooth scrolling to given `id` without changing the [hash](https://en.wikipedia.org/wiki/Fragment_identifier) of url.
      * 
-     * `anchorScroll` does not work well when ion-content has dynamic content. Part of content gets hidden on anchor scroll. {@link https://github.com/driftyco/ionic/issues/508 See the Github Issue}.
+     * This library is intended to provide the lacking functionality of `anchorScroll`.
+     * 
+     *  `anchorScroll` does not work well when `ion-content` has dynamic content. Part of content gets hidden on anchor scroll. [See the Github Issue](https://github.com/driftyco/ionic/issues/508).
      * 
      * <div class="alert alert-info">
         Unlike hash based anchorScroll, this directive does not pollute the Url by adding hash fragment.
       </div>
+      
      * # Demo    
-     * {@link https://embed.plnkr.co/Y71E3q/ Plunker Demo}
-     * @restrict A
-     * @element ANY
-     * @param {string} ionSmoothScroll id of DOM element where you want to scroll to.
-     * @param {string} delegateHandle Value of `delegate-handle` attribute. 
-     * Both scrollView container and element with `ion-smooth-scroll` must have this attribute even if you use css scrollView. 
-     * <br>This is used for getting the DOM reference of scrollable container 
+     * [Plunker Demo](https://embed.plnkr.co/Y71E3q)
+     */
+
+
+    /**
+     * @ngdoc provider
+     * @module ion-smooth-scroll
+     * @name ionSmoothScrollProvider
+     * @description
+     * Use `ionSmoothScrollProvider` to configure the scroll transistion duration
+     * > it will not affect the scrollable container created by `ionic-content` or `ion-scroll`
      * 
-     * @param {number} [duration=400] Scroll transistion duration in millisecond. <br><strong>Applicable only If you are not using ionic inbuilt JS scrolling.</strong> You will be rarely passing this parameter :) 
-     * @requires $ionicPosition
-     * @requires $ionicScrollDelegate
+     * You will be rarely using this feature as default value suffices in most of the cases.
      */
 
     /**
-     * @ngdoc object
-     * @name ionSmoothScroll
+     * @ngdoc method
+     * @module ion-smooth-scroll
+     * @name ionSmoothScrollProvider#setScrollDuration
      * @description
-     * ionSmoothScroll provider
-     */
-
-    /**
-     * @ngdoc function
-     * @name ionSmoothScroll#setScrollDuration
-     * @methodOf ionSmoothScroll
-     * @description
-     * Provider method of ionSmoothScrollProvider - Sets the default scroll transistion duration.
-     * @param {number} [duration=400] Scroll transistion duration in millisecond. <br><strong>Applicable only If you are not using ionic inbuilt JS scrolling.</strong> It will be ignored if new scroll position is less than `200px` distance from current postion.
-     * @example
-     * <doc:example module="app">
-     * <doc:source>
-     * <script>
-     * angular.module('app', ['ionSmoothScroll'])
+     * Sets the default scroll transistion duration.
+     * 
+     *  ```js
+     * angular.module('app', ['ion-smooth-scroll'])
             .config(['ionSmoothScrollProvider', function(ionSmoothScrollProvider) {
-                //uncomment below line and see it in action
                 //it will not affect if the scrollable container is created by ionic (e.g ion-content or ion-scroll with no overflow-scroll="true")
-                //ionSmoothScrollProvider.setScrollDuration(6000); //ion-smooth-scroll will now scroll for 6 seconds to reach the target
+                ionSmoothScrollProvider.setScrollDuration(6000); //ion-smooth-scroll will now scroll for 6 seconds to reach the target
             }]);
-            </script>             
-                <div>
-                    <a target="_blank" href="https://embed.plnkr.co/Y71E3q/"> See Demo in Plunker </a>
-                </div>
-     * </doc:source>
-     * </doc:example>
+     *``` 
+     @param {number} [duration=400] Scroll transistion duration in millisecond.
      */
 
-    angular.module('ionSmoothScroll', [])
+    /**
+    * @ngdoc directive
+    * @module ion-smooth-scroll
+    * @name ionSmoothScroll
+    * @description
+    * Directive responsible for providing smooth scrolling feature.
+    * @restrict A
+    * @element ANY
+    * @param {string} ionSmoothScroll id of DOM element where you want to scroll to.
+    * @param {string} delegateHandle Value of `delegate-handle` attribute. 
+    * Both scrollView container and element with `ion-smooth-scroll` must have this attribute even if you use css scrollView. 
+    * <br>This is used for getting the DOM reference of scrollable container 
+    * 
+    * @param {number} [duration=400] Scroll transistion duration in millisecond. <br><strong>Applicable only for css driven scrollView container.</strong> 
+    <div class="alert alert-info">
+         duration is ignored if new scroll position is less than `200px` distance from current postion.
+      </div> You will be rarely passing this parameter :)
+    *
+    * @requires https://ionicframework.com/docs/api/service/$ionicPosition $ionicPosition
+    * @requires http://ionicframework.com/docs/api/service/$ionicScrollDelegate $ionicScrollDelegate
+    * @example
+    * See in action at [Plunker](https://embed.plnkr.co/Y71E3q)
+    * ### 1. With ionic scrollView
+    *
+    *```html
+    <!-- Only required attributes has been shown below -->
+    <ion-content delegate-handle="main" id="top">
+        ...
+        <a ion-smooth-scroll="div1" delegate-handle="main">Go to Div 1</a>
+        ...
+        <div id="div1">
+            ...
+        </div>
+        ...
+    </ion-content>
+    ```
+    * ### 2. With css scrollView
+    
+   ```html
+
+    <!--Note that ion-content with overflow-scroll="true" creates the css driven scrollable area.-->
+    <!--<ion-content overflow-scroll="true" delegate-handle="main" id="top">
+                            OR
+    -->
+
+    <!--This directive is not responsible for making the container scrollable. You need to write your own css.-->
+    <div class="my-scrollable-div" delegate-handle="main" id="top">
+        ...
+        <a ion-smooth-scroll="div1" delegate-handle="main">Go to Div 1</a>
+
+        <!--Below link will reach to target in 2 seconds-->
+        <button ion-smooth-scroll="div1" delegate-handle="main" duration="2000">Go to Div 1 in 2 Seconds</button>
+        <!-- We can use any element -->
+        ...
+        <div id="div1">
+            ...
+        </div>
+        ...
+    </div>
+    ```
+    */
+
+
+    angular.module('ion-smooth-scroll', [])
         .provider('ionSmoothScroll', providerFunction)
         .directive('ionSmoothScroll', directiveDefinition);
 
@@ -66,17 +129,18 @@
 
         this.duration_ms = 400;
 
-        this.setScrollDuration = function (ms) {
+        this.setScrollDuration = function(ms) {
             this.duration_ms = ms;
         };
 
-        this.$get = function () {
+        this.$get = function() {
             return this;
         };
 
     }
 
     directiveDefinition.$inject = ['$ionicPosition', '$ionicScrollDelegate', 'ionSmoothScroll'];
+
     function directiveDefinition($ionicPosition, $ionicScrollDelegate, ionSmoothScroll) {
         return {
             restrict: "A",
@@ -85,7 +149,7 @@
 
         function linkFunction($scope, element, attrs) {
 
-            element.on('click', function () {
+            element.on('click', function() {
                 scrollTo(attrs.ionSmoothScroll, attrs.delegateHandle, attrs.duration);
             });
         }
@@ -143,9 +207,13 @@
             var distance = top - startTop;
 
             // based on http://en.wikipedia.org/wiki/Smoothstep
-            var smoothStep = function (start, end, point) {
-                if (point <= start) { return 0; }
-                if (point >= end) { return 1; }
+            var smoothStep = function(start, end, point) {
+                if (point <= start) {
+                    return 0;
+                }
+                if (point >= end) {
+                    return 1;
+                }
                 var x = (point - start) / (end - start); // interpolation
                 return x * x * (3 - 2 * x);
             };
@@ -154,7 +222,7 @@
             var previousTop = scrollViewContainer.scrollTop;
 
             // This is like a think function from a game loop
-            var scrollFrame = function () {
+            var scrollFrame = function() {
                 if (scrollViewContainer.scrollTop != previousTop) {
                     return;
                 }

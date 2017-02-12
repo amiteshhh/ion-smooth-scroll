@@ -3,9 +3,33 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        ngdocs: {
-            all: ['src/ion-smooth-scroll.js'],
-            options: { scripts: ['angular.js', 'src/ion-smooth-scroll.min.js'] }
+        "dgeni-alive": {
+            options: {
+                // optional basePath for correct path calculation
+                basePath: '',
+                // optional serve section for running local http server with live docs
+                serve: {
+                    // the server port
+                    // can also be written as a function, e.g.
+                    port: 10000,
+                    // open the browser
+                    openBrowser: true // or command to run favorite browser
+                }
+            },
+            api: {
+                // product title
+                title: '<%= pkg.preetyName %>',
+                // product version
+                version: '<%= pkg.version %>',
+                // do not expand paths
+                expand: false,
+                // where to put docs
+                dest: 'docs',
+                // where to look for sources
+                // grunt globbing is supported
+                src: ['src/ion-smooth-scroll.js'
+                    ],
+            }
         }, connect: {
             server: {
                 options: {
@@ -36,11 +60,10 @@ module.exports = function (grunt) {
             }
         }
     });
-
-    grunt.loadNpmTasks('grunt-ngdocs');
+    grunt.loadNpmTasks('dgeni-alive');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     // Default task(s).
-    grunt.registerTask('default', ['ngdocs', 'uglify']);
+    grunt.registerTask('default', ['uglify', 'dgeni-alive']);
 
 };

@@ -55,7 +55,7 @@ Directive is used as an attribute. When clicked it will scroll to the target.
 | ------------- |:-------------| -----|
 | ionSmoothScroll | <a href="" class="label type-hint type-hint-string">string</a> | id of DOM element where you want to scroll to.|
 | delegateHandle | <a href="">string</a> | Value of `delegate-handle` attribute. Both scrollView container and element with `ion-smooth-scroll` must have this attribute even if you use css scrollView. <br>This is used only for getting the DOM reference of scrollable container.| 
-| duration | <a href="" class="label type-hint type-hint-number">number</a> | Scroll transistion duration in millisecond. <br>**Applicable only If you are not using ionic inbuilt JS scrolling.** It will also be ignored if new scroll position is less than _200px_ distance from current postion. You will be rarely passing this parameter :) <br>You can also configure it at app level during _angular_ [config Phase](#config) explained later.<br> _(default: 400)_ | 
+| duration | <a href="" class="label type-hint type-hint-number">number</a> | Scroll transistion duration in millisecond. <br>**Applicable only for css driven scrollView container.** It will also be ignored if new scroll position is less than _200px_ distance from current postion. You will be rarely passing this parameter :) <br>You can also configure it at app level during _angular_ [config Phase](#config) explained later.<br> _(default: 400)_ | 
 
 
 
@@ -108,9 +108,11 @@ The only difference is you can pass additional parameter, **duration**, to speci
 
 ## Config
 
-> This section is applicable only for the css scrollView.
+> it will not affect the scrollable container created by `ionic-content` or `ion-scroll`.
 
-You can set the app level transistion duration using `ionSmoothScrollProvider.`__`setScrollDuration`__ method _(default: 400 ms)_.
+Configure the scroll transistion duration using `ionSmoothScrollProvider.`__`setScrollDuration`__ method _(default: 400 ms)_.
+
+You will be rarely using this feature as default value in suffices in most of the cases.
 
 ```javascript
 angular.module('myApp', ['ionSmoothScroll'])
@@ -120,7 +122,7 @@ angular.module('myApp', ['ionSmoothScroll'])
         (e.g ion-content or ion-scroll with no overflow-scroll="true")
         */
         
-        //ionSmoothScrollProvider.setScrollDuration(6000);        
+        ionSmoothScrollProvider.setScrollDuration(6000);        
         //ion-smooth-scroll will scroll for 6 seconds to reach the target
     }]);
 ```

@@ -1,5 +1,6 @@
 {
   "name": "ion-smooth-scroll",
+  "preetyName": "ionSmoothScroll",
   "version": "1.0.0",
   "description": "An alternate to $ionicScrollDelegate.anchorScroll with smooth scrolling without polluting hash Url",
   "main": "index.js",
@@ -26,9 +27,9 @@
   },
   "homepage": "https://github.com/amiteshhh/ion-smooth-scroll#readme",
   "devDependencies": {
+    "dgeni-alive": "^0.3.4",
     "grunt": "^1.0.1",
     "grunt-contrib-connect": "^1.0.2",
-    "grunt-contrib-uglify": "^2.0.0",
-    "grunt-ngdocs": "^0.2.10"
+    "grunt-contrib-uglify": "^2.0.0"
   }
 }
