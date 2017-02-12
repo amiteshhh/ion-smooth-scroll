@@ -10,6 +10,8 @@ Ionic component `anchorScroll` works unreliably. Below are few issues/limitation
 This scenario can be easily reproduced where dynamic data is rendered inside `ion-content`.
 2. **No support for _css_ based scrollView** : anchorScroll requires that the scrollable content to use ionic JS scroll (i.e `ion-content` or `ion-scroll` with no `overflow-scroll = true`).
 
+This library is intended to provide the lacking functionality of `anchorScroll`.
+
 
 > `ion-smooth-scroll` uses Ionic [$ionicScrollDelegate.scrollTo](http://ionicframework.com/docs/api/service/$ionicScrollDelegate) when
 scrollViews created by ionContent and ionScroll directives.
