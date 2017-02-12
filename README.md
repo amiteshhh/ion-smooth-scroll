@@ -30,10 +30,10 @@ Add `script` reference to  your application (normally `index.html`)
 <script src="path/to/ion-smooth-scroll.min.js"></script>
 ```
 
-Add the `ionSmoothScroll` as a dependency in your angular module
+Add the `ion-smooth-scroll` as a dependency in your angular module
 
 ```javascript
-angular.module('myApp', ['ionSmoothScroll']);
+angular.module('myApp', ['ion-smooth-scroll']);
 ```
 
 ### Usage
@@ -115,7 +115,7 @@ Configure the scroll transistion duration using `ionSmoothScrollProvider.`__`set
 You will be rarely using this feature as default value suffices in most of the cases.
 
 ```javascript
-angular.module('myApp', ['ionSmoothScroll'])
+angular.module('myApp', ['ion-smooth-scroll'])
     .config(['ionSmoothScrollProvider', function(ionSmoothScrollProvider){
         /*uncomment below line and see it in action
         it will not affect if the scrollable container is created by ionic 
