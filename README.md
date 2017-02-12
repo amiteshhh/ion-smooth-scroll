@@ -112,7 +112,7 @@ The only difference is you can pass additional parameter, **duration**, to speci
 
 Configure the scroll transistion duration using `ionSmoothScrollProvider.`__`setScrollDuration`__ method _(default: 400 ms)_.
 
-You will be rarely using this feature as default value in suffices in most of the cases.
+You will be rarely using this feature as default value suffices in most of the cases.
 
 ```javascript
 angular.module('myApp', ['ionSmoothScroll'])
