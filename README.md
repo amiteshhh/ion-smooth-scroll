@@ -18,9 +18,9 @@ scrollViews created by ionContent and ionScroll directives.
 
 Script file is available from a variety of sources. Choose the one that fits you.
 
-- Github Source Code https://github.com/amiteshhh/ion-smooth-scroll/blob/master/src/ion-smooth-scroll.min.js
+- Github Source Code https://github.com/amiteshhh/ion-smooth-scroll/blob/master/ion-smooth-scroll.min.js
 - Bower `bower install ion-smooth-scroll --save`
-- CDN `Raw Git`  https://rawgit.com/amiteshhh/ion-smooth-scroll/master/src/ion-smooth-scroll.min.js
+- CDN `Raw Git`  https://rawgit.com/amiteshhh/ion-smooth-scroll/master/ion-smooth-scroll.min.js
 
 ## Getting started
 
