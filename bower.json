@@ -15,16 +15,8 @@
   ],
   "license": "MIT",
   "ignore": [
-    "source",
     "docs",
-    "spec",
     ".bowerrc",
-    ".gitignore",
-    ".jshintignore",
-    ".jshintrc",
-    "bower.json",
-    "gruntfile.js",
-    "index.js",
-    "package.json"
+    ".gitignore"
   ]
 }

@@ -27,7 +27,7 @@ module.exports = function (grunt) {
                 dest: 'docs',
                 // where to look for sources
                 // grunt globbing is supported
-                src: ['src/ion-smooth-scroll.js'
+                src: ['ion-smooth-scroll.js'
                     ],
             }
         }, connect: {
@@ -49,12 +49,12 @@ module.exports = function (grunt) {
             },
             my_target: {
                 files: {
-                    'src/ion-smooth-scroll.min.js': 'src/ion-smooth-scroll.js'
+                    'ion-smooth-scroll.min.js': 'ion-smooth-scroll.js'
                 }
                 //or use below for multiple js files
                 /*files: [{
                     expand: true,
-                    src: ['src/ion-smooth-scroll.js', '!src/ion-smooth-scroll.min.js'],
+                    src: ['ion-smooth-scroll.js', '!src/ion-smooth-scroll.min.js'],
                     ext: '.min.js'
                 }]*/
             }
